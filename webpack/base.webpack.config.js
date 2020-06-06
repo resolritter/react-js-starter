@@ -25,6 +25,10 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+      {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
@@ -52,9 +56,10 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".jsx", ".js"],
+    extensions: [".js", ".jsx", ".svg"],
     alias: {
       src: path.resolve(context, "src"),
+      assets: path.resolve(context, "assets"),
     },
   },
 }
