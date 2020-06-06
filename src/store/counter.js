@@ -1,13 +1,17 @@
 import { createAction, createSlice } from "@reduxjs/toolkit"
 
-export const increment = createAction("increment")
+export const initialState = 0
 
-export default createSlice({
+const slice = createSlice({
   name: "counter",
-  initialState: 0,
+  initialState,
   reducers: {
-    [increment]: function (state, { payload = 1 }) {
+    increment: function (state, { payload = 1 }) {
       return state + payload
     },
   },
 })
+
+export const { increment } = slice.actions
+
+export default slice

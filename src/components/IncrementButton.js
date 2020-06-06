@@ -2,9 +2,9 @@ import React from "react"
 import { themedButton } from "./style"
 import { useDispatch, useSelector } from "react-redux"
 import { get } from "lodash/fp"
-import counterStore from "src/store/counter"
+import { increment } from "src/store/counter"
 
-export function Button() {
+export function IncrementButton() {
   const counter = useSelector(get("counter"))
   const dispatch = useDispatch()
   return (
@@ -13,7 +13,7 @@ export function Button() {
       <button
         className={themedButton}
         onClick={function () {
-          dispatch(counterStore.actions.increment())
+          dispatch(increment())
         }}
       >
         Increment counter
@@ -22,4 +22,4 @@ export function Button() {
   )
 }
 
-export default Button
+export default IncrementButton
