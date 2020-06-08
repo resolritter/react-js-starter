@@ -2,15 +2,17 @@ import * as React from "react"
 import { Route, Switch } from "react-router"
 import { useSelector } from "react-redux"
 import { useRef, useEffect } from "react"
-import IncrementButton from "src/components/IncrementButton"
 import ChangeThemeButton from "src/components/ChangeThemeButton"
+import StoreIncrementButton from "src/components/StoreIncrementButton"
+import LocalIncrementButton from "src/components/LocalIncrementButton"
 import { getRootElement } from "./utils"
 
 export function App() {
   return (
     <div>
       <ChangeThemeButton />
-      <IncrementButton />
+      <LocalIncrementButton />
+      <StoreIncrementButton />
     </div>
   )
 }
