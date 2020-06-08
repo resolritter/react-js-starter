@@ -1,4 +1,4 @@
-import { createAction, createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
 export const initialState = 0
 
