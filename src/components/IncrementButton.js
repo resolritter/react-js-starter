@@ -1,22 +1,15 @@
 import React from "react"
 import { themedButton } from "./style"
-import { useDispatch, useSelector } from "react-redux"
-import { get } from "lodash/fp"
-import { increment } from "src/store/counter"
 
-export function IncrementButton() {
-  const counter = useSelector(get("counter"))
-  const dispatch = useDispatch()
+export function IncrementButton({ increment, count, title = "Increment counter" }) {
   return (
     <div>
-      <span>{counter}</span>
+      <span>{count}</span>
       <button
         className={themedButton}
-        onClick={function () {
-          dispatch(increment())
-        }}
+        onClick={increment}
       >
-        Increment counter
+        {title}
       </button>
     </div>
   )
