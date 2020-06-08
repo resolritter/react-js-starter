@@ -23,6 +23,8 @@ node ./scripts/assemble_production_build_env.js
 
 ### Included packages
 
+- `react-id-generator` generates unique IDs which can be scoped per component
+  lifecycle (`useId`) or just generated whenever (`nextId`)
 - `@reduxjs/toolkit` allows for creating reducers with less boilerplate. It's
   also useful outside of Redux (see `LocalIncrementButton.js`).
 - `useForceUpdate` for triggering updates manually when needed - I used to rely
