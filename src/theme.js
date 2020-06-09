@@ -2,6 +2,7 @@ import { CSSProperties, useState, useEffect } from "react"
 import { setCssVariable, getRootElement } from "src/utils"
 import { unionDictionaryOf } from "./utils"
 import { zipObject } from "lodash-es"
+import { useId } from "react-id-generator"
 
 export const themes = {
   light: {
@@ -29,30 +30,30 @@ export function getActiveTheme() {
 }
 
 const themeChangedListeners = new Map()
-export function useTheme(varName) {
+export function useTheme() {
   const id = useId()[0]
-  const [theme] = useState(themes[getActiveTheme()].theme)
-  useEffect(function () {
-    themeChangedListeners.set(id, function subscription() {
-      setValue(themes[getActiveTheme()].theme[varName])
+  const [theme, setTheme] = useState(themes[getActiveTheme()].theme)
+  useEffect(function() {
+    themeChangedListeners.set(id, function subscription(newTheme) {
+      setTheme(themes[newTheme])
     })
 
     return function unsubscribe() {
       themeChangedListeners.delete(id)
     }
   }, [])
-  return value
+  return theme
 }
 
 export function setTheme(name) {
   activeTheme = name
   const theme = themes[activeTheme].theme
-  Object.keys(theme).forEach(function (key) {
+  Object.keys(theme).forEach(function(key) {
     setCssVariable(key, theme[key])
   })
 
   activeTheme = name
-  themeChangedListeners.forEach(function (notify) {
+  themeChangedListeners.forEach(function(notify) {
     notify(activeTheme)
   })
 }
