@@ -21,8 +21,9 @@ module.exports = {
     },
   },
   rules: {
-    // required for "plugins": ["unused-imports"]
     "react/prop-types": "off",
+
+    // related to the "unused-imports" plugin
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "no-unused-vars": "off",
@@ -39,7 +40,7 @@ module.exports = {
     "no-multi-spaces": "error",
     "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1 }],
 
-    // required for simple-import-sort
+    // related to the "simple-import-sort" plugin
     "simple-import-sort/sort": "error",
     "sort-imports": "off",
     "import/order": "off",
