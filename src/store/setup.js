@@ -1,13 +1,11 @@
-import { createBrowserHistory } from "history"
-import { applyMiddleware, compose, createStore } from "redux"
+import { configureStore } from "@reduxjs/toolkit"
 import { routerMiddleware } from "connected-react-router"
-import counter from "./counter.js"
-import { combineReducers } from "redux"
 import { connectRouter } from "connected-react-router"
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
+import { createBrowserHistory } from "history"
 
-const devToolsComposeExtension = "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
-export default function (preloadedState) {
+import counter from "./counter.js"
+
+export default function(preloadedState) {
   const history = createBrowserHistory()
   const middleware = [routerMiddleware(history)]
   const enhancers = []

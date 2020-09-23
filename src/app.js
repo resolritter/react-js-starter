@@ -1,11 +1,8 @@
 import * as React from "react"
 import { Route, Switch } from "react-router"
-import { useSelector } from "react-redux"
-import { useRef, useEffect } from "react"
 import ChangeThemeButton from "src/components/ChangeThemeButton"
-import StoreIncrementButton from "src/components/StoreIncrementButton"
 import LocalIncrementButton from "src/components/LocalIncrementButton"
-import { getRootElement } from "./utils"
+import StoreIncrementButton from "src/components/StoreIncrementButton"
 
 export const App = function() {
   return (

@@ -1,8 +1,9 @@
-import React from "react"
-import IncrementButton from "./IncrementButton.js"
-import { useDispatch, useSelector } from "react-redux"
 import { get } from "lodash/fp"
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { increment } from "src/store/counter"
+
+import IncrementButton from "./IncrementButton.js"
 
 export const StoreIncrementButton = function() {
   const count = useSelector(get("counter"))

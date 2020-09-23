@@ -1,8 +1,7 @@
-import { CSSProperties, useState, useEffect } from "react"
-import { setCssVariable, getRootElement } from "src/utils"
-import { unionDictionaryOf } from "./utils"
 import { zipObject } from "lodash-es"
+import { useEffect,useState } from "react"
 import { useId } from "react-id-generator"
+import { setCssVariable } from "src/utils"
 
 export const themes = {
   light: {
