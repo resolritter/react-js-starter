@@ -27,9 +27,9 @@ var configuration = mergeConfigurations(baseConfiguration, {
       template: path.resolve(baseConfiguration.context, "./index.html"),
       filename: "index.html",
     }),
-    new CopyWebpackPlugin([
-      { context: baseConfiguration.context, from: "assets" },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [{ context: baseConfiguration.context, from: "assets" }],
+    }),
   ],
   optimization: {
     runtimeChunk: "single",
@@ -40,7 +40,7 @@ var configuration = mergeConfigurations(baseConfiguration, {
       cacheGroups: {
         fromNpm: {
           test: /[\\/]node_modules[\\/]/,
-          name: function ({ rawRequest }) {
+          name: function({ rawRequest }) {
             return `npm.${hashChunk(path.basename(rawRequest))}`
           },
         },
