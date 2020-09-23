@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import React, { useReducer } from "react"
 
-import IncrementButton from "./IncrementButton.js"
+import IncrementButton from "./IncrementButton"
 
 export const initialState = 0
 const slice = createSlice({

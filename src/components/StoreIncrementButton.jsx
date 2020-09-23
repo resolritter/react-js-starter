@@ -3,7 +3,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { increment } from "src/store/counter"
 
-import IncrementButton from "./IncrementButton.js"
+import IncrementButton from "./IncrementButton"
 
 export const StoreIncrementButton = function () {
   const count = useSelector(get("counter"))
