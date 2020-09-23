@@ -35,6 +35,7 @@
     "jest": "^26.4.2",
     "linaria": "^2.0.0-alpha.1",
     "mini-css-extract-plugin": "^0.11.2",
+    "prettier": "^2.1.2",
     "source-map-loader": "^1.1.0",
     "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^3.9.0",
@@ -47,7 +48,8 @@
     "build:analyze": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env ANALYZE_BUNDLE=true node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "start": "NODE_ENV=development webpack-dev-server --config webpack/dev.webpack.config.js",
     "lint": "eslint --ext=js --ext=jsx ./src/",
-    "fix": "eslint --fix --ext=js --ext=jsx ./src/",
+    "lint:single": "eslint",
+    "format": "prettier \"**/*.{js,html,json}\" --write",
     "clean": "rm -rf public/"
   },
   "author": "@resolritter",

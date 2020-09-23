@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history"
 
 import counter from "./counter.js"
 
-export default function(preloadedState) {
+export default function (preloadedState) {
   const history = createBrowserHistory()
   const middleware = [routerMiddleware(history)]
   const enhancers = []

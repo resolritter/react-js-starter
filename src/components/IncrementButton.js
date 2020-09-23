@@ -2,7 +2,7 @@ import React from "react"
 
 import { themedButton } from "./style"
 
-export const IncrementButton = function({
+export const IncrementButton = function ({
   increment,
   count,
   title = "Increment counter",

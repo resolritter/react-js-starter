@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   extends: ["eslint:recommended", "plugin:react/recommended"],
   env: {
     browser: true,
@@ -19,7 +20,6 @@ module.exports = {
       version: "detect",
     },
   },
-  ignorePatterns: ["scripts/**"],
   rules: {
     // required for "plugins": ["unused-imports"]
     "react/prop-types": "off",

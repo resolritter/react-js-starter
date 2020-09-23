@@ -40,7 +40,7 @@ var configuration = mergeConfigurations(baseConfiguration, {
       cacheGroups: {
         fromNpm: {
           test: /[\\/]node_modules[\\/]/,
-          name: function({ rawRequest }) {
+          name: function ({ rawRequest }) {
             return `npm.${hashChunk(path.basename(rawRequest))}`
           },
         },

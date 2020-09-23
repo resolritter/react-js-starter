@@ -1,5 +1,5 @@
 import { zipObject } from "lodash-es"
-import { useEffect,useState } from "react"
+import { useEffect, useState } from "react"
 import { useId } from "react-id-generator"
 import { setCssVariable } from "src/utils"
 
@@ -24,15 +24,15 @@ export const themeEntries = zipObject(themeList, themeList)
 export const initialTheme = "light"
 
 let activeTheme
-export const getActiveTheme = function() {
+export const getActiveTheme = function () {
   return activeTheme
 }
 
 const themeChangedListeners = new Map()
-export const useTheme = function() {
+export const useTheme = function () {
   const id = useId()[0]
   const [theme, setTheme] = useState(themes[getActiveTheme()].theme)
-  useEffect(function() {
+  useEffect(function () {
     themeChangedListeners.set(id, function subscription(newTheme) {
       setTheme(themes[newTheme])
     })
@@ -44,15 +44,15 @@ export const useTheme = function() {
   return theme
 }
 
-export const setTheme = function(name) {
+export const setTheme = function (name) {
   activeTheme = name
   const theme = themes[activeTheme].theme
-  Object.keys(theme).forEach(function(key) {
+  Object.keys(theme).forEach(function (key) {
     setCssVariable(key, theme[key])
   })
 
   activeTheme = name
-  themeChangedListeners.forEach(function(notify) {
+  themeChangedListeners.forEach(function (notify) {
     notify(activeTheme)
   })
 }

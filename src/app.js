@@ -4,7 +4,7 @@ import ChangeThemeButton from "src/components/ChangeThemeButton"
 import LocalIncrementButton from "src/components/LocalIncrementButton"
 import StoreIncrementButton from "src/components/StoreIncrementButton"
 
-export const App = function() {
+export const App = function () {
   return (
     <div>
       <ChangeThemeButton />
@@ -14,7 +14,7 @@ export const App = function() {
   )
 }
 
-export const ConnectedApp = function() {
+export const ConnectedApp = function () {
   return (
     <Switch>
       <Route exact path="/" component={App} />
