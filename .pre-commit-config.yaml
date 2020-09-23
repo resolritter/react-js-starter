@@ -18,7 +18,7 @@ repos:
         name: prettier
         entry: node_modules/.bin/prettier
         language: node
-        files: \.jsx?$
+        files: \.(jsx?|html|json)$
         args: [
           '--check'
         ]
