@@ -49,7 +49,7 @@
     "start": "NODE_ENV=development webpack-dev-server --config webpack/dev.webpack.config.js",
     "lint": "eslint --ext=js --ext=jsx ./src/",
     "lint:single": "eslint",
-    "format": "prettier \"**/*.{js,html,json}\" --write",
+    "format": "prettier \"**/*.{js,jsx,html,json}\" --write",
     "clean": "rm -rf public/"
   },
   "author": "@resolritter",
