@@ -1,18 +1,19 @@
 import { zipObject } from "lodash"
 
 const cssVariablePrefix = "--"
-export function newCssVariableName(name) {
+
+export const newCssVariableName = function(name) {
   return `${cssVariablePrefix}${name}`
 }
 
-export function cssVariableValueOf(name) {
+export const cssVariableValueOf = function(name) {
   return `var(${newCssVariableName(name)})`
 }
 
-export function unionDictionaryOf(array) {
+export const dictionaryOf = function(array) {
   return zipObject(array, array)
 }
 
-export function setCssVariable(name, value) {
+export const setCssVariable = function(name, value) {
   document.documentElement.style.setProperty(newCssVariableName(name), value)
 }

@@ -7,7 +7,7 @@ import StoreIncrementButton from "src/components/StoreIncrementButton"
 import LocalIncrementButton from "src/components/LocalIncrementButton"
 import { getRootElement } from "./utils"
 
-export function App() {
+export const App = function() {
   return (
     <div>
       <ChangeThemeButton />
@@ -17,7 +17,7 @@ export function App() {
   )
 }
 
-function ConnectedApp() {
+export const ConnectedApp = function() {
   return (
     <Switch>
       <Route exact path="/" component={App} />

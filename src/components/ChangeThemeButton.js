@@ -2,7 +2,7 @@ import React from "react"
 import { getActiveTheme, useTheme, themes, themeEntries, setTheme } from "src/theme"
 import { themedButton } from "./style"
 
-export function Button() {
+export const ChangeThemeButton = function() {
   return (
     <button
       className={themedButton}
@@ -20,4 +20,4 @@ export function Button() {
   )
 }
 
-export default Button
+export default ChangeThemeButton

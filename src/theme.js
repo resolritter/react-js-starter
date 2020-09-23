@@ -25,12 +25,12 @@ export const themeEntries = zipObject(themeList, themeList)
 export const initialTheme = "light"
 
 let activeTheme
-export function getActiveTheme() {
+export const getActiveTheme = function() {
   return activeTheme
 }
 
 const themeChangedListeners = new Map()
-export function useTheme() {
+export const useTheme = function() {
   const id = useId()[0]
   const [theme, setTheme] = useState(themes[getActiveTheme()].theme)
   useEffect(function() {
@@ -45,7 +45,7 @@ export function useTheme() {
   return theme
 }
 
-export function setTheme(name) {
+export const setTheme = function(name) {
   activeTheme = name
   const theme = themes[activeTheme].theme
   Object.keys(theme).forEach(function(key) {
