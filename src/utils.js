@@ -1,4 +1,4 @@
-import { zipObject } from "lodash"
+import { zipObject } from "lodash-es"
 
 const cssVariablePrefix = "--"
 
