@@ -47,6 +47,7 @@
     "build:analyze_bundle": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env ANALYZE_BUNDLE=true node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "start": "NODE_ENV=development webpack-dev-server --config webpack/dev.webpack.config.js",
     "lint": "eslint --ext=js --ext=jsx ./src/",
+    "fix": "eslint --fix --ext=js --ext=jsx ./src/",
     "clean": "rm -rf public/"
   },
   "author": "@resolritter",
