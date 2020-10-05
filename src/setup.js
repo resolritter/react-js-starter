@@ -1,5 +1,5 @@
-import getStoreAndHistory from "./store/setup"
+import storeSetup from "./store/setup"
 
-const { store, history } = getStoreAndHistory()
+const { store, history } = storeSetup()
 
 export { store, history }
