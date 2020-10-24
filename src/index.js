@@ -1,5 +1,5 @@
-import { ConnectedRouter } from "connected-react-router"
 import * as React from "react"
+import { ConnectedRouter } from "connected-react-router"
 import * as ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 

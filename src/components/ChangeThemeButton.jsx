@@ -1,7 +1,8 @@
 import React from "react"
-import { getActiveTheme, setTheme, themeEntries } from "src/theme"
 
 import { themedButton } from "./style"
+
+import { getActiveTheme, setTheme, themeEntries } from "src/theme"
 
 export const ChangeThemeButton = function () {
   return (

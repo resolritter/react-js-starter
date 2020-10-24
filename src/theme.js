@@ -1,6 +1,7 @@
-import { zipObject } from "lodash-es"
 import { useEffect, useState } from "react"
+import { zipObject } from "lodash-es"
 import { useId } from "react-id-generator"
+
 import { setCssVariable } from "src/utils"
 
 export const themes = {

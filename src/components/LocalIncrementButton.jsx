@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
 import React, { useReducer } from "react"
+import { createSlice } from "@reduxjs/toolkit"
 
 import IncrementButton from "./IncrementButton"
 
