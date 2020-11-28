@@ -94,6 +94,7 @@ module.exports = {
 
     // misc
     "require-atomic-updates": "off",
+    "no-constant-condition": "off",
     "react/prefer-stateless-function": [
       0,
       {
