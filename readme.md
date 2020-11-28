@@ -20,6 +20,8 @@ node ./scripts/assemble_production_build_env.js
 - Utility library: `lodash`
 
 There's also a theme support implementation in a separate branch (**with-theme**).
+Bear in mind that branch is not actively maintained, so it's likely to not include
+everything that's also included in the master branch.
 
 # Supporting packages
 
