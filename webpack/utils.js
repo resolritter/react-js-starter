@@ -12,14 +12,15 @@ if (process.env["NODE_ENV"] === "production" && !chunkSalt) {
 
 module.exports = {
   mergeConfigurations(baseConfiguration, otherConfiguration) {
-    return mergeWith(baseConfiguration, otherConfiguration, function (
-      objValue,
-      srcValue,
-    ) {
-      if (isArray(objValue)) {
-        return objValue.concat(srcValue)
-      }
-    })
+    return mergeWith(
+      baseConfiguration,
+      otherConfiguration,
+      function (objValue, srcValue) {
+        if (isArray(objValue)) {
+          return objValue.concat(srcValue)
+        }
+      },
+    )
   },
   hashChunk(chunkName) {
     const hashBuffer = crypto.pbkdf2Sync(chunkName, chunkSalt, 4, 16, "md5")
