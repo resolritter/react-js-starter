@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Route, Switch } from "react-router"
 
+import FetchTodo from "src/components/FetchTodo"
 import LocalIncrementButton from "src/components/LocalIncrementButton"
 import StoreIncrementButton from "src/components/StoreIncrementButton"
 
@@ -9,6 +10,7 @@ export const App = function () {
     <div>
       <LocalIncrementButton />
       <StoreIncrementButton />
+      <FetchTodo />
     </div>
   )
 }
