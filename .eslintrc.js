@@ -17,7 +17,14 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ["react", "react-hooks", "unused-imports", "simple-import-sort"],
+  plugins: [
+    "react",
+    "react-hooks",
+    "unused-imports",
+    "simple-import-sort",
+    "import",
+    "prettier",
+  ],
   settings: {
     react: {
       version: "detect",
@@ -43,7 +50,7 @@ module.exports = {
     "no-multi-spaces": "error",
     "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1 }],
 
-    // related to the "simple-import-sort" plugin
+    // related to import sorting and ordering
     "sort-imports": "off",
     "import/order": "off",
     "simple-import-sort/sort": [
@@ -59,6 +66,10 @@ module.exports = {
         ],
       },
     ],
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": ["error", { considerQueryString: true }],
+    "prettier/prettier": "error",
 
     // misc
     "require-atomic-updates": "off",

@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { routerMiddleware } from "connected-react-router"
-import { connectRouter } from "connected-react-router"
+import { connectRouter, routerMiddleware } from "connected-react-router"
 import { createBrowserHistory } from "history"
 
 import counter from "./counter"
