@@ -13,15 +13,14 @@ const slice = createSlice({
     },
   },
 })
-
 const { increment } = slice.actions
 
 export function LocalIncrementButton() {
-  const [count, thisDispatcher] = useReducer(slice.reducer, initialState)
+  const [count, dispatch] = useReducer(slice.reducer, initialState)
   return (
     <IncrementButton
       increment={function () {
-        thisDispatcher(increment())
+        dispatch(increment())
       }}
       count={count}
       title={"Increment counter (local state)"}
