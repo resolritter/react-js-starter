@@ -7,8 +7,8 @@ export const IncrementButton = function ({
 }) {
   return (
     <div>
-      <span>{count}</span>
       <button onClick={increment}>{title}</button>
+      <p>Count: {count}</p>
     </div>
   )
 }

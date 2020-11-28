@@ -28,7 +28,7 @@ everything that's also included in the master branch.
 - `react-id-generator` generates unique IDs which can be scoped per component
   lifecycle (`useId`) or just generated whenever (`nextId`)
 - `@reduxjs/toolkit` allows for creating reducers with less boilerplate. It's
-  also useful outside of Redux (see `LocalIncrementButton.js`).
+  for component-specific reducers.
 - `@svgr/webpack` allows importing SVGs as React components.
 - `useForceUpdate` for manual updates. In the past, a combination of
   [useCounter](https://github.com/streamich/react-use/blob/master/src/useCounter.ts) +
