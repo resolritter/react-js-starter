@@ -19,6 +19,8 @@ node ./scripts/assemble_production_build_env.js
 - CSS: `linaria`
 - Utility library: `lodash`
 
+There's also a theme support implementation in a separate branch (**with-theme**).
+
 # Supporting packages
 
 - `react-id-generator` generates unique IDs which can be scoped per component

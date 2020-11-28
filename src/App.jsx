@@ -1,14 +1,12 @@
 import * as React from "react"
 import { Route, Switch } from "react-router"
 
-import ChangeThemeButton from "src/components/ChangeThemeButton"
 import LocalIncrementButton from "src/components/LocalIncrementButton"
 import StoreIncrementButton from "src/components/StoreIncrementButton"
 
 export const App = function () {
   return (
     <div>
-      <ChangeThemeButton />
       <LocalIncrementButton />
       <StoreIncrementButton />
     </div>

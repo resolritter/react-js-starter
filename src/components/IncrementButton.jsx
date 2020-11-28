@@ -1,7 +1,5 @@
 import React from "react"
 
-import { themedButton } from "./style"
-
 export const IncrementButton = function ({
   increment,
   count,
@@ -10,9 +8,7 @@ export const IncrementButton = function ({
   return (
     <div>
       <span>{count}</span>
-      <button className={themedButton} onClick={increment}>
-        {title}
-      </button>
+      <button onClick={increment}>{title}</button>
     </div>
   )
 }

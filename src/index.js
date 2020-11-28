@@ -5,9 +5,6 @@ import { Provider } from "react-redux"
 
 import App from "./App"
 import { history, store } from "./setup"
-import { initialTheme, setTheme } from "./theme"
-
-setTheme(initialTheme)
 
 ReactDOM.render(
   <Provider store={store}>
