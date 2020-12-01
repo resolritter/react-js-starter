@@ -1,7 +1,7 @@
 # Feature outline
 
 - Renderer: `react`
-- Router: `connected-react-router`
+- Router: `react-router-dom`
 - State management: `react-redux`
 - CSS: `linaria`
 - Utility library: `lodash`
