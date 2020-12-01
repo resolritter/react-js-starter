@@ -1,5 +1,5 @@
 # build
-public/
+build/
 
 # node
 node_modules/

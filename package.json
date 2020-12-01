@@ -45,9 +45,9 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "clean": "rimraf public",
-    "build:assemble_env": "node ./scripts/assembleProductionBuildEnv.js",
-    "prebuild": "npm run clean && npm run build:assemble_env",
+    "clean": "rimraf build",
+    "build:assembleEnv": "node ./scripts/assembleProductionBuildEnv.js",
+    "prebuild": "npm run clean && npm run build:assembleEnv",
     "build": "npm run prebuild && node -r ./env/webpackProdBuild.js node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "build:analyze": "npm run prebuild && node -r ./env/webpackProdBuildAnalyze.js node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "start": "node -r ./env/dev.js ./node_modules/.bin/webpack-dev-server --config webpack/dev.webpack.config.js",
