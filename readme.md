@@ -1,16 +1,3 @@
-# Before building for production
-
-Generate the environment for building the assets
-
-```sh
-node ./scripts/assemble_production_build_env.js
-```
-
-# Development setup
-
-- `npm install`
-- `npm start`
-
 # Feature outline
 
 - Renderer: `react`
@@ -29,3 +16,22 @@ everything that's also included in the master branch.
   for component-specific reducers.
 - `@svgr/webpack` allows importing SVGs as React components.
 - `useForceUpdate` for triggering manual component updates where necessary.
+
+# How to run
+
+First of all, install the dependencies
+
+```
+npm install
+```
+
+# Building
+
+- `npm run build` will build optimized for production
+
+- `npm run build:analyze` does the same as `build` and shows more information
+  about the bundle size
+
+# Developing
+
+`npm run start`
