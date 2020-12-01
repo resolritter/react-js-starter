@@ -6,3 +6,6 @@ node_modules/
 
 # linaria
 /.linaria-cache
+
+# environment
+.env

@@ -27,11 +27,14 @@ npm install
 
 # Building
 
-- `npm run build` will build optimized for production
+- `npm run build` will build optimizing for production
 
-- `npm run build:analyze` does the same as `build` and shows more information
+- `npm run build:analyze` does the same as `build`, plus shows more information
   about the bundle size
 
 # Developing
+
+Note: Environment variables can be set from the `.env` file at the root of this
+repository.
 
 `npm run start`
