@@ -52,9 +52,9 @@
     "build:analyze": "npm run prebuild && node -r ./env/webpackProdBuildAnalyze.js node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "start": "node -r ./env/dev.js ./node_modules/.bin/webpack-dev-server --config webpack/dev.webpack.config.js",
     "dev": "npm run start",
-    "lint": "node ./run.js lint",
-    "lint:all": "node ./run.js lint_all",
-    "fix": "node ./run.js fix",
-    "fix:all": "node ./run.js fix_all"
+    "lint": "node ./scripts/codeQualityAssurance.js lint",
+    "lint:all": "node ./scripts/codeQualityAssurance.js lint_all",
+    "fix": "node ./scripts/codeQualityAssurance.js fix",
+    "fix:all": "node ./scripts/codeQualityAssurance.js fix_all"
   }
 }

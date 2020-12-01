@@ -10,9 +10,10 @@ const args = process.argv.slice(3)
 
 const eslintExtensions = ["js", "jsx"]
 const prettierExtensions = ["json", "html"]
-const eslintPath = path.join(__dirname, "./node_modules/.bin/eslint")
-const prettierPath = path.join(__dirname, "./node_modules/.bin/prettier")
-const runSubProcConfiguration = { cwd: __dirname, stdio: "inherit" }
+const root = path.join(__dirname, "..")
+const eslintPath = path.join(root, "./node_modules/.bin/eslint")
+const prettierPath = path.join(root, "./node_modules/.bin/prettier")
+const runSubProcConfiguration = { cwd: root, stdio: "inherit" }
 
 console.log(`[DEBUG] ${JSON.stringify({ command, args })}`)
 
@@ -59,7 +60,7 @@ if (args.length) {
   files = args
 } else {
   const stagedFilesOutput = cp
-    .execFileSync("git", ["status", "--short"], { cwd: __dirname })
+    .execFileSync("git", ["status", "--short"], { cwd: root })
     .toString()
     .trim()
     .split("\n")
@@ -116,11 +117,7 @@ const virtualCoresCount = os.cpus().length
         console.log(`[BEGIN WORK] ${file}`)
         cp.execFile(
           "node",
-          [
-            path.join(__dirname, "./node_modules/.bin/eslint"),
-            ...extraArgs,
-            file,
-          ],
+          [eslintPath, ...extraArgs, file],
           runSubProcConfiguration,
           resolve,
         )
@@ -140,11 +137,7 @@ const virtualCoresCount = os.cpus().length
           console.log(`[BEGIN WORK] ${file}`)
           cp.execFile(
             "node",
-            [
-              path.join(__dirname, "./node_modules/.bin/prettier"),
-              "--write",
-              file,
-            ],
+            [prettierPath, "--write", file],
             runSubProcConfiguration,
             resolve,
           )
