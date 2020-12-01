@@ -1,4 +1,5 @@
 const path = require("path")
+
 const context = path.resolve(__dirname, "..")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
