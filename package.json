@@ -1,5 +1,7 @@
 {
   "name": "app",
+  "author": "resolritter",
+  "license": "MIT",
   "version": "0.0.0",
   "description": "",
   "dependencies": {
@@ -37,6 +39,7 @@
     "linaria": "^2.0.0-alpha.1",
     "mini-css-extract-plugin": "^0.11.3",
     "prettier": "^2.2.1",
+    "tiny-async-pool": "^1.2.0",
     "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^3.9.0",
     "webpack-cli": "^3.3.12",
@@ -47,12 +50,10 @@
     "build": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "build:analyze": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env ANALYZE_BUNDLE=true node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "start": "NODE_ENV=development webpack-dev-server --config webpack/dev.webpack.config.js",
-    "lint": "eslint --ext=js --ext=jsx ./src/",
-    "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write .",
-    "fix": "npm run lint:fix && npm run format",
+    "lint": "node ./run.js lint",
+    "lint:all": "node ./run.js lint_all",
+    "fix": "node ./run.js fix",
+    "fix:all": "node ./run.js fix_all",
     "clean": "rm -rf public/"
-  },
-  "author": "@resolritter",
-  "license": "ISC"
+  }
 }

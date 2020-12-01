@@ -1,9 +1,7 @@
-const fs = require("fs")
-const path = require("path")
-
 module.exports = {
   root: true,
   extends: ["eslint:recommended", "plugin:react/recommended"],
+  ignorePatterns: ["package-lock.json", "public/**"],
   env: {
     browser: true,
     node: true,
@@ -31,7 +29,9 @@ module.exports = {
     },
   },
   rules: {
-    "react/prop-types": "off",
+    // prettier
+    "prettier/prettier": "error",
+    "no-extra-semi": "off",
 
     // related to the "unused-imports" plugin
     "react/jsx-uses-react": "warn",
@@ -69,7 +69,9 @@ module.exports = {
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": ["error", { considerQueryString: true }],
-    "prettier/prettier": "error",
+
+    // react
+    "react/prop-types": "off",
 
     // misc
     "require-atomic-updates": "off",
