@@ -46,7 +46,7 @@
   },
   "scripts": {
     "clean": "rimraf public",
-    "build:assemble_env": "node ./scripts/assemble_production_build_env.js",
+    "build:assemble_env": "node ./scripts/assembleProductionBuildEnv.js",
     "prebuild": "npm run clean && npm run build:assemble_env",
     "build": "npm run prebuild && node -r ./env/webpackProdBuild.js node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "build:analyze": "npm run prebuild && node -r ./env/webpackProdBuildAnalyze.js node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
