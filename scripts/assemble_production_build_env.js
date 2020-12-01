@@ -1,23 +1,56 @@
 const path = require("path")
 const fs = require("fs")
-
-const envDir = path.resolve(__dirname, "../env")
 const crypto = require("crypto")
 
-if (!fs.existsSync(envDir)) {
-  throw new Error(`Environment directory ${envDir} missing.`)
+const operation = process.argv[2]
+const prodEnvFile = path.join(__dirname, "../env/webpackProdBuild.js")
+
+if (fs.existsSync(prodEnvFile)) {
+  if (!operation) {
+    console.log(`Using pre-existing environment at ${prodEnvFile}`)
+  }
+} else {
+  fs.writeFileSync(
+    prodEnvFile,
+    `process.env.CHUNKS_HASH_SALT ??= "${crypto
+      .randomBytes(32)
+      .toString("base64")}"
+process.env.NODE_ENV ??= "production"`,
+  )
+
+  if (!operation) {
+    console.log(`Production environment assembled to ${prodEnvFile}`)
+  }
 }
 
-var extraContent = "\n"
-const envParts = path.join(envDir, "webpack.prod.build.env.part")
-if (fs.existsSync(envParts)) {
-  extraContent = `${fs.readFileSync(envParts)}\n`
+if (!operation) {
+  process.exit(0)
 }
 
-const randomSalt = crypto.randomBytes(32).toString("base64")
-
-const targetPath = path.join(envDir, "webpack.prod.build.env")
-
-fs.writeFileSync(targetPath, `CHUNKS_HASH_SALT=${randomSalt}\n${extraContent}`)
-
-console.log(`Production environment assembled to ${targetPath}`)
+switch (operation) {
+  case "analyze": {
+    const productionEnvAnalyzeFile = path.join(
+      __dirname,
+      "../env/webpackProdBuildAnalyze.js",
+    )
+    if (fs.existsSync(productionEnvAnalyzeFile)) {
+      console.log(
+        `Using pre-existing environment at ${productionEnvAnalyzeFile}`,
+      )
+    } else {
+      const prodEnv = fs.readFileSync(prodEnvFile).toString()
+      fs.writeFileSync(
+        productionEnvAnalyzeFile,
+        `${prodEnv}\nprocess.env.ANALYZE_BUNDLE ??= 1`,
+      )
+      console.log(
+        `Production analyze environment assembled to ${productionEnvAnalyzeFile}`,
+      )
+    }
+    break
+  }
+  default:
+    console.error(`Unknown operation ${operation}`)
+    process.exit(1)
+    break
+}

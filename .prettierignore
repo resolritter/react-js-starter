@@ -1,4 +1,4 @@
-**/node_modules/*
-**/public/*
+node_modules/*
+build/*
 .linaria-cache
 package-lock.json

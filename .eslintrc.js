@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   extends: ["eslint:recommended", "plugin:react/recommended"],
-  ignorePatterns: ["package-lock.json", "public/**"],
+  ignorePatterns: ["package-lock.json", "build/**"],
   env: {
     browser: true,
     node: true,

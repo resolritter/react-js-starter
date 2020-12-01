@@ -25,7 +25,6 @@
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.2.0",
     "css-loader": "^4.3.0",
-    "dotenv": "^8.2.0",
     "eslint": "^7.10.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
@@ -38,6 +37,7 @@
     "linaria": "^2.0.0-alpha.1",
     "mini-css-extract-plugin": "^0.11.3",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "tiny-async-pool": "^1.2.0",
     "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^3.9.0",
@@ -45,14 +45,15 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "test": "jest",
-    "build": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
-    "build:analyze": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env ANALYZE_BUNDLE=true node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
-    "start": "NODE_ENV=development webpack-dev-server --config webpack/dev.webpack.config.js",
+    "clean": "rimraf public",
+    "build:assemble_env": "node ./scripts/assemble_production_build_env.js",
+    "prebuild": "npm run clean && npm run build:assemble_env",
+    "build": "npm run prebuild && node -r ./env/webpackProdBuild.js node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
+    "build:analyze": "npm run prebuild && node -r ./env/webpackProdBuildAnalyze.js node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
+    "start": "node -r ./env/dev.js ./node_modules/.bin/webpack-dev-server --config webpack/dev.webpack.config.js",
     "lint": "node ./run.js lint",
     "lint:all": "node ./run.js lint_all",
     "fix": "node ./run.js fix",
-    "fix:all": "node ./run.js fix_all",
-    "clean": "rm -rf public/"
+    "fix:all": "node ./run.js fix_all"
   }
 }

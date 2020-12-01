@@ -14,7 +14,7 @@ const { mergeConfigurations, hashChunk } = require("./utils")
 var configuration = mergeConfigurations(baseConfiguration, {
   mode: "production",
   output: {
-    path: path.resolve(baseConfiguration.context, "./public"),
+    path: path.resolve(baseConfiguration.context, "./build"),
     filename: "[name]-[contenthash].js",
     chunkFilename: "[name]-[contenthash].js",
   },
