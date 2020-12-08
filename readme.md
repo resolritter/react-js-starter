@@ -12,10 +12,10 @@ everything that's also included in the master branch.
 
 # Supporting packages
 
-- `@reduxjs/toolkit` allows for creating reducers with less boilerplate. It's
-  for component-specific reducers.
+- `@reduxjs/toolkit` allows for creating reducers with less boilerplate. Not only
+   for Redux stores, it can be also used in component-local reducers.
 - `@svgr/webpack` allows importing SVGs as React components.
-- `useForceUpdate` for triggering manual component updates where necessary.
+- `use-force-update` for triggering manual component updates where necessary.
 
 # How to run
 
