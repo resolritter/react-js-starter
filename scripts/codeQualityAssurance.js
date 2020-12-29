@@ -6,16 +6,32 @@ const os = require("os")
 
 const command = process.argv[2]
 assert.ok(command)
-const args = process.argv.slice(3)
+let args = process.argv.slice(3)
+let isQuiet
+if (args[0] === "--quiet") {
+  isQuiet = true
+  args = args.slice(1)
+}
 
+const errorExitCode = 1
 const eslintExtensions = ["js", "jsx"]
 const prettierExtensions = ["json", "html"]
 const root = path.join(__dirname, "..")
 const eslintPath = path.join(root, "./node_modules/.bin/eslint")
 const prettierPath = path.join(root, "./node_modules/.bin/prettier")
-const runSubProcConfiguration = { cwd: root, stdio: "inherit" }
+const processCheckConfig = {
+  cwd: root,
+  stdio: "inherit",
+}
 
-console.log(`[DEBUG] ${JSON.stringify({ command, args })}`)
+const log = function (message, channel = "log") {
+  if (isQuiet) {
+    return
+  }
+  console[channel](message)
+}
+
+log(`[DEBUG] ${JSON.stringify({ command, args })}`)
 
 if (command.endsWith("all")) {
   const lintAll = function (extraArgs = []) {
@@ -29,7 +45,7 @@ if (command.endsWith("all")) {
         }),
         ".",
       ],
-      runSubProcConfiguration,
+      processCheckConfig,
     )
   }
 
@@ -43,7 +59,7 @@ if (command.endsWith("all")) {
       cp.execFileSync(
         "node",
         [prettierPath, "--write", `**/*.{${prettierExtensions.join(",")}}`],
-        runSubProcConfiguration,
+        processCheckConfig,
       )
       break
     }
@@ -102,7 +118,7 @@ if (args.length) {
     })
 
   if (stagedFilesOutput.length) {
-    console.log("[INFO] operating on staged files")
+    log("[INFO] operating on staged files")
 
     files = stagedFilesOutput.map(function (line) {
       let whitespaceCount = 0
@@ -174,38 +190,74 @@ const prettierFiles = files.filter(function (file) {
 
 const virtualCoresCount = os.cpus().length
 ;(async function () {
-  const lint = function (extraArgs = []) {
-    return asyncPool(virtualCoresCount, eslintFiles, function (file) {
+  const runLinter = async function (extraArgs = []) {
+    let hasAnyFailed = false
+
+    await asyncPool(virtualCoresCount, eslintFiles, function (file) {
       return new Promise(function (resolve) {
-        console.log(`[BEGIN WORK] ${file}`)
+        console.log(`[INFO] linting ${file}`)
         cp.execFile(
           "node",
           [eslintPath, ...extraArgs, file],
-          runSubProcConfiguration,
+          processCheckConfig,
           resolve,
+          function (error, _, stderr) {
+            error ??= stderr
+            if (error) {
+              console.error(error)
+              hasAnyFailed = true
+            }
+          },
         )
       })
     })
+
+    return hasAnyFailed
+  }
+
+  const runFormatter = async function (mode) {
+    let hasAnyFailed = false
+
+    await asyncPool(virtualCoresCount, prettierFiles, function (file) {
+      return new Promise(function (resolve) {
+        console.log(`[INFO] formatting ${file}`)
+        cp.execFile(
+          "node",
+          [prettierPath, mode, file],
+          processCheckConfig,
+          resolve,
+          function (error, _, stderr) {
+            error ??= stderr
+            if (error) {
+              console.error(error)
+              hasAnyFailed = true
+            }
+          },
+        )
+      })
+    })
+
+    return hasAnyFailed
   }
 
   switch (command) {
     case "lint": {
-      await lint()
+      const hasLintFailed = await runLinter()
+      if (hasLintFailed) {
+        process.exit(errorExitCode)
+      }
       break
     }
     case "fix": {
-      await lint(["--fix"])
-      await asyncPool(virtualCoresCount, prettierFiles, function (file) {
-        return new Promise(function (resolve) {
-          console.log(`[BEGIN WORK] ${file}`)
-          cp.execFile(
-            "node",
-            [prettierPath, "--write", file],
-            runSubProcConfiguration,
-            resolve,
-          )
-        })
-      })
+      const hasFixFailed = await runLinter(["--fix"])
+      if (hasFixFailed) {
+        process.exit(errorExitCode)
+      } else {
+        const hasFormatFailed = await runFormatter("--write")
+        if (hasFormatFailed) {
+          process.exit(errorExitCode)
+        }
+      }
       break
     }
     default:
